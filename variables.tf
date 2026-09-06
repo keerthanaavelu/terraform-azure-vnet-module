@@ -35,23 +35,33 @@ variable "nsg_name" {
 }
 
 # --- Intentionally rigid: single NSG rule as flat fields ---
-variable "nsg_rule_name" {
-  description = "Name of the single NSG inbound rule"
-  type        = string
-}
+# variable "nsg_rule_name" {
+#   description = "Name of the single NSG inbound rule"
+#   type        = string
+# }
 
-variable "nsg_rule_priority" {
-  description = "Priority of the NSG rule"
-  type        = number
-}
+# variable "nsg_rule_priority" {
+#   description = "Priority of the NSG rule"
+#   type        = number
+# }
 
-variable "nsg_rule_port" {
-  description = "Destination port for the NSG rule"
-  type        = string
-}
+# variable "nsg_rule_port" {
+#   description = "Destination port for the NSG rule"
+#   type        = string
+# }
 
-variable "nsg_rule_source_address_prefix" {
-  description = "Source address prefix allowed by the NSG rule"
-  type        = string
-  default     = "*"
+# variable "nsg_rule_source_address_prefix" {
+#   description = "Source address prefix allowed by the NSG rule"
+#   type        = string
+#   default     = "*"
+# }
+
+variable "nsg_rules" {
+  description = "List of NSG security rules"
+  type = list(object({
+    name                   = string
+    priority               = number
+    destination_port_range = string
+    source_address_prefix  = string
+  }))
 }
